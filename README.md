@@ -35,7 +35,7 @@ cd seo-automation-suite
 cp .env.example .env
 # Edit .env with your actual credentials
 ```
-📖 See [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md) for detailed configuration guide
+📖 See [docs/ENVIRONMENT_SETUP.md](docs/ENVIRONMENT_SETUP.md) for detailed configuration guide
 
 3. **Install dependencies**
 ```bash
@@ -56,8 +56,8 @@ docker-compose up -d
 ⚠️ **Never commit your `.env` file!** It contains sensitive credentials.
 
 - All API keys must be in `.env` file
-- See [SECURITY.md](SECURITY.md) for security best practices
-- See [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md) for configuration guide
+- See [docs/SECURITY.md](docs/SECURITY.md) for security best practices
+- See [docs/ENVIRONMENT_SETUP.md](docs/ENVIRONMENT_SETUP.md) for configuration guide
 
 ## API Documentation
 
@@ -65,8 +65,8 @@ Comprehensive API documentation is available:
 
 - **Interactive Swagger UI**: http://localhost:8000/docs
 - **ReDoc Documentation**: http://localhost:8000/redoc
-- **Full API Guide**: [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
-- **Quick Start Guide**: [API_QUICKSTART.md](API_QUICKSTART.md)
+- **Full API Guide**: [docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)
+- **Quick Start Guide**: [docs/API_QUICKSTART.md](docs/API_QUICKSTART.md)
 - **Postman Collection**: [postman_collection.json](postman_collection.json)
 
 ### Quick Start
@@ -76,7 +76,7 @@ Comprehensive API documentation is available:
 3. Use the token in Authorization header: `Bearer <token>`
 4. Explore endpoints in Swagger UI
 
-See [API_QUICKSTART.md](API_QUICKSTART.md) for detailed examples.
+See [docs/API_QUICKSTART.md](docs/API_QUICKSTART.md) for detailed examples.
 
 ## API Endpoints
 
@@ -138,9 +138,9 @@ nano .env
 
 ### Deployment Guides
 
-- **Quick Start**: [QUICK_DEPLOY.md](QUICK_DEPLOY.md) - Deploy in 3 commands
-- **Full Guide**: [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) - Comprehensive deployment instructions
-- **Checklist**: [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md) - Pre/post deployment checklist
+- **Quick Start**: [docs/QUICK_DEPLOY.md](docs/QUICK_DEPLOY.md) - Deploy in 3 commands
+- **Full Guide**: [docs/DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md) - Comprehensive deployment instructions
+- **Checklist**: [docs/DEPLOYMENT_CHECKLIST.md](docs/DEPLOYMENT_CHECKLIST.md) - Pre/post deployment checklist
 
 ### Supported Platforms
 
@@ -153,12 +153,20 @@ nano .env
 
 ## 📚 Documentation
 
-- [API Documentation](API_DOCUMENTATION.md) - Complete API reference
-- [API Quick Start](API_QUICKSTART.md) - Get started in 5 minutes
-- [Environment Setup](ENVIRONMENT_SETUP.md) - Configuration guide
-- [Security Guide](SECURITY.md) - Security best practices
-- [Deployment Guide](DEPLOYMENT_GUIDE.md) - Server deployment
-- [Quick Deploy](QUICK_DEPLOY.md) - Fast deployment guide
+**All documentation is in the [docs/](docs/) directory.**
+
+### Quick Links
+
+- 🚀 **[Deploy Now](docs/DEPLOY_NOW.md)** - Copy-paste deployment commands
+- 📖 **[Documentation Index](docs/README.md)** - Complete documentation guide
+- 🔌 **[API Documentation](docs/API_DOCUMENTATION.md)** - Complete API reference
+- ⚡ **[API Quick Start](docs/API_QUICKSTART.md)** - Get started in 5 minutes
+- ⚙️ **[Environment Setup](docs/ENVIRONMENT_SETUP.md)** - Configuration guide
+- 🔒 **[Security Guide](docs/SECURITY.md)** - Security best practices
+- 🚀 **[Deployment Guide](docs/DEPLOYMENT_GUIDE.md)** - Server deployment
+- ✅ **[Quick Deploy](docs/QUICK_DEPLOY.md)** - Fast deployment guide
+
+**Browse all documentation**: [docs/README.md](docs/README.md)
 
 ## License
 
