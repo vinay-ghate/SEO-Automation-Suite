@@ -1,0 +1,533 @@
+{
+  "info": {
+    "name": "SEO Automation Suite API",
+    "description": "Complete API collection for SEO Automation Suite",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "project_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('User registered:', response.user_id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"test123\",\n  \"name\": \"Test User\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('access_token', response.access_token);",
+                  "    console.log('Token saved:', response.access_token.substring(0, 20) + '...');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"test123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/logout",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Create Project",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('project_id', response.project_id);",
+                  "    console.log('Project created:', response.project_id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My SEO Project\",\n  \"domain\": \"example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/projects",
+              "host": ["{{base_url}}"],
+              "path": ["projects"]
+            }
+          }
+        },
+        {
+          "name": "List Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects",
+              "host": ["{{base_url}}"],
+              "path": ["projects"]
+            }
+          }
+        },
+        {
+          "name": "Get Project",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["projects", "{{project_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Project Name\",\n  \"domain\": \"newdomain.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["projects", "{{project_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Project",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["projects", "{{project_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Meta Tags",
+      "item": [
+        {
+          "name": "Generate Meta Tags",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"{{project_id}}\",\n  \"url\": \"https://example.com/page\",\n  \"content\": \"Sample page content for meta tag generation\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/meta/generate",
+              "host": ["{{base_url}}"],
+              "path": ["meta", "generate"]
+            }
+          }
+        },
+        {
+          "name": "Get Meta Tags",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/meta/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["meta", "{{project_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Single Meta Tag",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/meta/{{project_id}}/{{meta_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["meta", "{{project_id}}", "{{meta_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Meta Tag",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/meta/{{project_id}}/{{meta_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["meta", "{{project_id}}", "{{meta_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Broken Links",
+      "item": [
+        {
+          "name": "Start Link Scan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"{{project_id}}\",\n  \"domain\": \"example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/links/scan",
+              "host": ["{{base_url}}"],
+              "path": ["links", "scan"]
+            }
+          }
+        },
+        {
+          "name": "Get Scan Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/links/scan/{{scan_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["links", "scan", "{{scan_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Broken Links",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/links/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["links", "{{project_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Export Broken Links",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/links/{{project_id}}/export",
+              "host": ["{{base_url}}"],
+              "path": ["links", "{{project_id}}", "export"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Competitor Analysis",
+      "item": [
+        {
+          "name": "Analyze Competitors",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"{{project_id}}\",\n  \"competitor_urls\": [\n    \"https://competitor1.com\",\n    \"https://competitor2.com\"\n  ],\n  \"target_url\": \"https://mysite.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/competitor/analyze",
+              "host": ["{{base_url}}"],
+              "path": ["competitor", "analyze"]
+            }
+          }
+        },
+        {
+          "name": "Get Competitor Analyses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/competitor/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["competitor", "{{project_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Analysis Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/competitor/report/{{analysis_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["competitor", "report", "{{analysis_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Analysis",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/competitor/report/{{analysis_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["competitor", "report", "{{analysis_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SERP Comparator",
+      "item": [
+        {
+          "name": "Compare SERP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"{{project_id}}\",\n  \"keywords\": [\"seo tools\", \"keyword research\"],\n  \"location\": \"United States\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/serp/compare",
+              "host": ["{{base_url}}"],
+              "path": ["serp", "compare"]
+            }
+          }
+        },
+        {
+          "name": "Get SERP Data",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/serp/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["serp", "{{project_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Keyword History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/serp/history/{{keyword}}",
+              "host": ["{{base_url}}"],
+              "path": ["serp", "history", "{{keyword}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Comparison",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/serp/compare/{{comparison_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["serp", "compare", "{{comparison_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Comparison",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/serp/{{comparison_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["serp", "{{comparison_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "Root",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            }
+          }
+        },
+        {
+          "name": "Health",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
